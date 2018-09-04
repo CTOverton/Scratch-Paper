@@ -1,4 +1,5 @@
 let changeColor = document.getElementById('changeColor');
+let copypaste = document.getElementById('copypaste');
 
 chrome.storage.sync.get('color', function(data) {
     changeColor.style.backgroundColor = data.color;
@@ -12,4 +13,18 @@ changeColor.onclick = function(element) {
             tabs[0].id,
             {code: 'document.body.style.backgroundColor = "' + color + '";'});
     });
+};
+
+copypaste.onclick = function(element) {
+    var copyText = document.getElementById("myInput");
+    copyText.select();
+    document.execCommand("copy");
+
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copied: " + copyText.value;
+};
+
+copypaste.mouseout = function(element) {
+    var tooltip = document.getElementById("myTooltip");
+    tooltip.innerHTML = "Copy to clipboard";
 };
