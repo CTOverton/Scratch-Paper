@@ -16,15 +16,15 @@ changeColor.onclick = function(element) {
 };
 
 copypaste.onclick = function(element) {
-    var copyText = document.getElementById("myInput");
+    let copyText = document.getElementById("myInput");
     copyText.select();
     document.execCommand("copy");
 
-    var tooltip = document.getElementById("myTooltip");
+    let tooltip = document.getElementById("myTooltip");
     tooltip.innerHTML = "Copied: " + copyText.value;
 };
 
 copypaste.mouseout = function(element) {
-    var tooltip = document.getElementById("myTooltip");
+    let tooltip = document.getElementById("myTooltip");
     tooltip.innerHTML = "Copy to clipboard";
 };

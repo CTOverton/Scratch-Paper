@@ -1,70 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        button {
-            height: 30px;
-            width: 30px;
-            outline: none;
-        }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 140px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 150%;
-            left: 50%;
-            margin-left: -75px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="css/popup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="css/material-design.css">
 </head>
 <body>
-    <button id="changeColor"></button>
-    <br>
-
-    <!-- The text field -->
-    <input type="text" value="Hello World" id="myInput">
-
-    <!-- The button used to copy the text -->
-    <div class="tooltip">
-        <button id="copypaste">
-            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-            Copy text
-        </button>
+    <div>
+        <button id="changeColor"></button>
     </div>
 
-    <br>
-    <textarea name="paper" rows="10" cols="30"></textarea>
+    <div class="copyPasteTool">
+        <input type="text" value="Hello World" id="myInput">
 
+        <div class="tooltip">
+            <button id="copypaste">
+                <span class="tooltiptext" id="myTooltip">Copy</span>
+                <i class="material-icons">file_copy</i>
+            </button>
+        </div>
+        <div class="tooltip">
+            <button id="more">
+                <span class="tooltiptext" id="moreToolTip">More</span>
+                <i class="material-icons">more_horiz</i>
+            </button>
+        </div>
+    </div>
+
+    <i class="material-icons md-dark md-inactive">face</i>
+
+    <div>
+        <textarea name="paper" rows="10" cols="30"></textarea>
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>
