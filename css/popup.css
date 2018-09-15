@@ -1,16 +1,52 @@
-.copyPasteTool {
+.sp_text {
     display: flex;
+    margin-bottom: 10px;
 }
-.copyPasteTool input {
+
+input {
     width: 100%;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F5F5F6;
 }
 
-.copyPasteTool button {
-    height: 24px;
-    width: 24px;
-    outline: none;
+textarea {
+    width: 100%;
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: #F5F5F6;
+    resize: vertical;
 }
 
+button {
+    height: 32px;
+    width: 32px;
+    margin-left: 4px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background-color: #1675d1;
+    text-decoration: none;
+}
+
+button.less {
+    color: white;
+    background-color: #3a3a3a;
+}
+
+.add_btn {
+    height: 32px;
+    width: 32px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+}
+
+
+
+/* Tooltips */
 .tooltip {
     position: relative;
     display: inline-block;

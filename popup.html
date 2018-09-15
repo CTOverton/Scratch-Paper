@@ -5,34 +5,63 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="css/material-design.css">
+
 </head>
 <body>
-    <div>
-        <button id="changeColor"></button>
+
+    <div style="width: 200px;">
+        Title
     </div>
-
-    <div class="copyPasteTool">
-        <input type="text" value="Hello World" id="myInput">
-
-        <div class="tooltip">
-            <button id="copypaste">
-                <span class="tooltiptext" id="myTooltip">Copy</span>
-                <i class="material-icons">file_copy</i>
+    <div id="sp_tools">
+        <div class="sp_text">
+            <input type="text" value="hello">
+            <button class="copy_btn" data-clipboard-action="copy">
+                <i class="material-icons md-18">file_copy</i>
+            </button>
+            <button class="btn less">
+                <i class="material-icons md-18">more_horiz</i>
             </button>
         </div>
-        <div class="tooltip">
-            <button id="more">
-                <span class="tooltiptext" id="moreToolTip">More</span>
-                <i class="material-icons">more_horiz</i>
+
+        <div class="sp_text">
+            <input type="text" value="2">
+            <button class="copy_btn" data-clipboard-action="copy">
+                <i class="material-icons md-18">file_copy</i>
+            </button>
+            <button class="btn less">
+                <i class="material-icons md-18">more_horiz</i>
+            </button>
+        </div>
+
+        <div class="sp_text">
+            <input type="text" value="3">
+            <button class="copy_btn" data-clipboard-action="copy">
+                <i class="material-icons md-18">file_copy</i>
+            </button>
+            <button class="btn less">
+                <i class="material-icons md-18">more_horiz</i>
+            </button>
+        </div>
+
+        <div class="sp_text">
+            <textarea type="text" value="hello"></textarea>
+            <button class="copy_btn" data-clipboard-action="copy" data-clipboard-target="#foo">
+                <i class="material-icons md-18">file_copy</i>
+            </button>
+            <button class="btn less">
+                <i class="material-icons md-18">more_horiz</i>
             </button>
         </div>
     </div>
 
-    <i class="material-icons md-dark md-inactive">face</i>
-
     <div>
-        <textarea name="paper" rows="10" cols="30"></textarea>
+        <button id="add_btn" class="add_btn">
+            <i class="material-icons md-18">add</i>
+        </button>
     </div>
+
+
+    <script src="lib/clipboard.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>
