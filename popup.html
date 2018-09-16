@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="css/material-design.css">
+    <script src="lib/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>
@@ -12,6 +13,7 @@
     <div style="width: 200px;">
         Title goes here
     </div>
+
     <div id="sp_tools">
         <div class="sp_text">
             <input type="text" value="hello">
@@ -24,22 +26,15 @@
         </div>
 
         <div class="sp_text">
-            <input type="text" value="2">
-            <button class="copy_btn" data-clipboard-action="copy">
-                <i class="material-icons md-18">file_copy</i>
+            <input type="text" value="hello">
+            <button class="btn less">
+                <i class="material-icons md-18">keyboard_arrow_right</i>
             </button>
             <button class="btn less">
-                <i class="material-icons md-18">more_horiz</i>
+                <i class="material-icons md-18">notes</i>
             </button>
-        </div>
-
-        <div class="sp_text">
-            <input type="text" value="3">
-            <button class="copy_btn" data-clipboard-action="copy">
-                <i class="material-icons md-18">file_copy</i>
-            </button>
-            <button class="btn less">
-                <i class="material-icons md-18">more_horiz</i>
+            <button class="remove_btn btn less">
+                <i class="material-icons md-18">delete</i>
             </button>
         </div>
 
@@ -60,7 +55,22 @@
         </button>
     </div>
 
+    <button id="save" class="btn" style="width: 100%;">Save Layout</button>
+    <button id="load" class="btn less" style="width: 100%;">Load Layout</button>
 
+    <div id="template" class="hide">
+        <div class="sp_text">
+            <input type="text" value="hello">
+            <button class="copy_btn" data-clipboard-action="copy">
+                <i class="material-icons md-18">file_copy</i>
+            </button>
+            <button class="btn less">
+                <i class="material-icons md-18">more_horiz</i>
+            </button>
+        </div>
+    </div>
+
+    <script scr="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/clipboard.js"></script>
     <script src="popup.js"></script>
 </body>
