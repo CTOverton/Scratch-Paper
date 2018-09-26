@@ -2,9 +2,9 @@
   "name": "Getting Started Example",
   "version": "1.0",
   "description": "Build an Extension!",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
   "background": {
-    "scripts": ["jquery.min.js", "background.js"],
+    "scripts": ["lib/jquery-3.3.1.js" , "background.js"],
     "persistent": false
   },
   "options_page": "options.html",

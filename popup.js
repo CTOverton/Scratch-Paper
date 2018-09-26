@@ -1,19 +1,43 @@
-// let changeColor = document.getElementById('changeColor');
-// let copypaste = document.getElementById('copypaste');
+// Load Layout
+window.addEventListener("load", function() {
+    console.log('loading...');
+    chrome.storage.sync.get('layout', function(data) {
+        tools.innerHTML = data.layout;
+    });
+});
 
-// chrome.storage.sync.get('color', function(data) {
-//     changeColor.style.backgroundColor = data.color;
-//     changeColor.setAttribute('value', data.color);
-// });
-//
-// changeColor.onclick = function(element) {
-//     let color = element.target.value;
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//         chrome.tabs.executeScript(
-//             tabs[0].id,
-//             {code: 'document.body.style.backgroundColor = "' + color + '";'});
-//     });
-// };
+// Save Layout
+$(document).ready(function(){
+    $('input, textarea').change(function(){
+        console.log("saving layout...")
+
+        let $content = $("#sp_tools");
+
+        let $clone = $content.clone()
+        $clone.find('input, textarea').each(function () {
+            let $input = $(this);
+            // start an attribute object later use with attr()
+            let attrs = {
+                value: $input.val()
+            };
+
+            if ($input.is('textarea')) {
+                $input.html($input.val())
+            }
+
+            // add the attributes to element
+            $input.attr(attrs);
+        });
+
+        let html = $clone.html();
+
+        chrome.storage.sync.set({layout: html}, function() {
+            console.log('layout is:');
+            console.log('');
+            console.log(html);
+        });
+    });
+});
 
 // Clipboard.js
 var clipboard = new ClipboardJS('.copy_btn', {
@@ -41,47 +65,13 @@ addbtn.onclick = function() {
 addListeners();
 
 function addListeners() {
-    let removebtn = $('.remove_btn');
+    let $removebtns = $('.remove_btn');
 
-    if (removebtn) {
-        for (var i=0; i < removebtn.length; i++)
-        removebtn[i].onclick = function(element) {
+    if ($removebtns) {
+        for (let i=0; i < $removebtns.length; i++)
+        $removebtns[i].onclick = function() {
             this.parentElement.remove();
         };
     }
-};
 
-let save = document.getElementById('save');
-let load = document.getElementById('load');
-
-save.onclick = function() {
-
-    var $content = $("#sp_tools");
-
-    var $clone = $content.clone()
-    $clone.find(':input', ':textarea').each(function () {
-        var $input = $(this);
-        // start an attribute object later use with attr()
-        var attrs = {
-            value: $input.val()
-        };
-
-        // add the attributes to element
-        $input.attr(attrs);
-    });
-
-    var html = $clone.html();
-
-    chrome.storage.sync.set({layout: html}, function() {
-        console.log('layout is:');
-        console.log('');
-        console.log(html);
-    })
-};
-
-load.onclick = function() {
-    console.log('loading...');
-    chrome.storage.sync.get('layout', function(data) {
-        tools.innerHTML = data.layout;
-    });
-};
+}

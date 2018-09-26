@@ -12,3 +12,12 @@ chrome.runtime.onInstalled.addListener(function() {
     //     }]);
     // });
 });
+
+function saveLayout(html) {
+    chrome.storage.sync.set({layout: html}, function() {
+        console.log('layout is:');
+        console.log('');
+        console.log(html);
+        alert(html);
+    });
+}
