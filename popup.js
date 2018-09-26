@@ -1,14 +1,28 @@
-// Load Layout
-window.addEventListener("load", function() {
-    console.log('loading...');
-    chrome.storage.sync.get('layout', function(data) {
-        tools.innerHTML = data.layout;
-    });
+$(document).ready(function(){
+    loadLayout()
+        .then(function() {
+            // Add .change() events to input fields
+            $('input, textarea').change(function(){
+                saveLayout();
+            });
+        });
 });
 
-// Save Layout
-$(document).ready(function(){
-    $('input, textarea').change(function(){
+// ========== [ Save / Load ] ==========
+
+function loadLayout() {
+    return new Promise(resolve => {
+        console.log('loading layout...');
+        chrome.storage.sync.get('layout', function(data) {
+            $('#sp_tools').html(data.layout);
+            console.log('Loaded Layout: \n' + data.layout);
+            resolve(data.layout);
+        });
+    });
+}
+
+function saveLayout() {
+    return new Promise(resolve => {
         console.log("saving layout...")
 
         let $content = $("#sp_tools");
@@ -31,15 +45,20 @@ $(document).ready(function(){
 
         let html = $clone.html();
 
-        chrome.storage.sync.set({layout: html}, function() {
-            console.log('layout is:');
-            console.log('');
-            console.log(html);
+        chrome.storage.sync.set({layout: html}, function () {
+            console.log('Saved Layout: \n' + html);
+            resolve(html);
         });
     });
-});
+}
 
-// Clipboard.js
+
+
+
+// ========== [ Buttons ] ==========
+
+// copy_btn with Clipboard.js
+
 var clipboard = new ClipboardJS('.copy_btn', {
     target: function(trigger) {
         return trigger.parentElement.firstElementChild;
@@ -54,24 +73,16 @@ clipboard.on('error', function(e) {
     console.log(e);
 });
 
-// Add Button
-let addbtn = document.getElementById('add_btn');
-let tools = document.getElementById('sp_tools');
+// add_btn
 
-addbtn.onclick = function() {
-    $("#sp_tools").append($("#template").html());
-};
+// add_btn
 
-addListeners();
+$('#add_btn')
+    .click(function() {
+        $("#sp_tools").append($("#template").html());
+    });
 
-function addListeners() {
-    let $removebtns = $('.remove_btn');
-
-    if ($removebtns) {
-        for (let i=0; i < $removebtns.length; i++)
-        $removebtns[i].onclick = function() {
-            this.parentElement.remove();
-        };
-    }
-
-}
+$('.rmv_btn')
+    .click(function() {
+        $(this).parent().remove();
+    });
