@@ -2,7 +2,7 @@
     display: none;
 }
 
-.sp_text {
+.sp_tool {
     display: flex;
     margin-bottom: 10px;
 }
@@ -41,14 +41,14 @@ button.less {
 }
 
 .add_btn {
-    height: 32px;
-    width: 32px;
     display: block;
     margin: auto;
     border-radius: 50%;
 }
 
-
+.rmv_btn {
+    background-color: #c2185b;
+}
 
 /* Tooltips */
 .tooltip {
