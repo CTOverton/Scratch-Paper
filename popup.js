@@ -8,8 +8,8 @@ $(document).ready(function(){
 
             // ========== [ Buttons ] ==========
 
-            function addButtonEvents() {
-                // copy_btn with Clipboard.js
+            // copy_btn with Clipboard.js
+            $('#sp_tools').on('click', '.copy_btn', function() {
                 var clipboard = new ClipboardJS('.copy_btn', {
                     target: function (trigger) {
                         return trigger.parentElement.firstElementChild;
@@ -23,57 +23,51 @@ $(document).ready(function(){
                 clipboard.on('error', function (e) {
                     console.log(e);
                 });
+            });
 
-                // clear_btn
-                $('.clear_btn')
-                    .click(function () {
-                        let $input = $(this).closest('.sp_tool').find('input, textarea');
-                        $input.val('');
-                        $input.html('')
-                        saveLayout();
-                    });
+            // clear_btn
+            $('#sp_tools').on('click', '.clear_btn', function() {
+                let $input = $(this).closest('.sp_tool').find('input, textarea');
+                $input.val('');
+                $input.html('')
+                saveLayout();
+            });
 
-                // toggle_btn
-                $('.toggle_btn')
-                    .click(function () {
-                        let tool = $(this).closest('.sp_tool');
-                        let $input = tool.find('input, textarea');
-                        let data = $input.val();
+            // toggle_btn
+            $('#sp_tools').on('click', '.toggle_btn', function() {
+                let tool = $(this).closest('.sp_tool');
+                let $input = tool.find('input, textarea');
+                let data = $input.val();
 
-                        if ($input.is('input')) {
-                            $input.remove();
-                            tool.prepend('<textarea type="text">' + data + '</textarea>');
-                        } else {
-                            $input.remove();
-                            tool.prepend('<input type="text" value="' + data + '">');
-                        }
-                        saveLayout();
-                    });
+                if ($input.is('input')) {
+                    $input.remove();
+                    tool.prepend('<textarea type="text">' + data + '</textarea>');
+                } else {
+                    $input.remove();
+                    tool.prepend('<input type="text" value="' + data + '">');
+                }
+                saveLayout();
+            });
 
-                // rmv_btn
-                $('.rmv_btn')
-                    .click(function () {
-                        $(this).closest('.sp_tool').remove();
-                        saveLayout();
-                    });
+            // rmv_btn
+            $('#sp_tools').on('click', '.rmv_btn', function() {
+                $(this).closest('.sp_tool').remove();
+                saveLayout();
+            });
 
-                // menu_btn
-                $('.menu_btn')
-                    .click(function () {
-                        let $btn = $(this);
-                        let $tool = $btn.closest('.sp_tool');
+            // menu_btn
+            $('#sp_tools').on('click', '.menu_btn', function() {
+                let $btn = $(this);
+                let $tool = $btn.closest('.sp_tool');
 
-                        $tool.find('button').toggle();
-                    });
-            }
-
-            addButtonEvents();
+                $tool.find('button').toggle();
+            });
 
             // add_btn
             $('#add_btn')
                 .click(function () {
                     $("#sp_tools").append($("#sp_tool_template").html());
-                    addButtonEvents();
+                    // addButtonEvents();
                     saveLayout();
                 });
         });
